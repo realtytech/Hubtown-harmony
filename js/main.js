@@ -96,16 +96,16 @@ $("#leadForm-popup").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobile,
-        "email": email,
-        "url": currentUrl,
-        "did": srd,
-        "UTMSource":utm_source,
-        "UTMmedium":utm_medium,
-        "projectName": project
+        "mobile": mobileno,
+        "email": emailid,
+        "source": "Website",
+        "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "sub_source":utm_medium,
+        "project": project
 
     }
-
+    storeLeadInEnrichr(data,formName);
+    return;
     storeLeadInSFDC(data);
     return;
 
@@ -198,16 +198,16 @@ $("#leadForm").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobile,
-        "email": email,
-        "url": currentUrl,
-        "did": srd,
-        "UTMSource":utm_source,
-        "UTMmedium":utm_medium,
-        "projectName": project
+        "mobile": mobileno,
+        "email": emailid,
+        "source": "Website",
+        "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "sub_source":utm_medium,
+        "project": project
 
     }
-
+    storeLeadInEnrichr(data,formName);
+    return;
     storeLeadInSFDC(data);
     return;
 
@@ -296,18 +296,18 @@ $("#leadFormMobile").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobile,
-        "email": email,
-        "url": currentUrl,
-        "did": srd,
-        "UTMSource":utm_source,
-        "UTMmedium":utm_medium,
-        "projectName": project
+        "mobile": mobileno,
+        "email": emailid,
+        "source": "Website",
+        "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "sub_source":utm_medium,
+        "project": project
 
     }
+    storeLeadInEnrichr(data,formName);
+    return;
 
     storeLeadInSFDC(data);
-    return;
 
 
     $.ajax({
@@ -337,7 +337,28 @@ $("#leadFormMobile").submit(function (e) {
 });
 
 
+function storeLeadInEnrichr(data,formName) {
+    console.log("Adding Data to SFDC");
+    console.log(data)
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://pinkode.glitz.apps.enrichr.co/public/companies/41b21e3e-600b-4d9f-aab1-bfb72c5b915e/leads-all",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",          
+        },
+        "processData": false,
+        "data": JSON.stringify(data)
+      }
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        storeLeadInDB(data["name"], data["email"], data["mobile"], JSON.stringify(response),formName);
+        setTimeout(function redirect_response() { window.location.href = "response.html"; }, 2000)
+      }); 
 
+}
 
 
 function storeLeadInSFDC(data) {
