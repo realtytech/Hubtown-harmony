@@ -96,8 +96,8 @@ $("#leadForm-popup").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobileno,
-        "email": emailid,
+        "mobile": mobile,
+        "email": email,
         "source": "Website",
         "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
         "sub_source":utm_medium,
@@ -198,8 +198,8 @@ $("#leadForm").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobileno,
-        "email": emailid,
+        "mobile": mobile,
+        "email": email,
         "source": "Website",
         "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
         "sub_source":utm_medium,
@@ -296,8 +296,8 @@ $("#leadFormMobile").submit(function (e) {
     var utm_medium = queryParameter('utm_medium',currentUrl);
     var data = {
         "name": name,
-        "mobile": mobileno,
-        "email": emailid,
+        "mobile": mobile,
+        "email": email,
         "source": "Website",
         "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
         "sub_source":utm_medium,
