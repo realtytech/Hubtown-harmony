@@ -94,11 +94,19 @@ $("#leadForm-popup").submit(function (e) {
     var project = 'Hubtown Harmony';
     var utm_source = queryParameter('utm_source',currentUrl);
     var utm_medium = queryParameter('utm_medium',currentUrl);
+    var sourceMapping = { 'Google_Brand%20Search' : "Google Search",
+        'google_display': "Google Display",
+        "Google%20Discovery": "Google Discovery",
+        "":"Website"
+    }
+
+    var source  = (utm_medium) ? sourceMapping[utm_medium] : "Website";
+    
     var data = {
         "name": name,
         "mobile": mobile,
         "email": email,
-        "source": "Website",
+        "source": source,
         "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
         "sub_source":utm_medium,
         "project": project
@@ -196,11 +204,19 @@ $("#leadForm").submit(function (e) {
     var project = 'Hubtown Harmony';
     var utm_source = queryParameter('utm_source',currentUrl);
     var utm_medium = queryParameter('utm_medium',currentUrl);
+    var sourceMapping = { 'Google_Brand%20Search' : "Google Search",
+        'google_display': "Google Display",
+        "Google%20Discovery": "Google Discovery",
+        "":"Website"
+    }
+
+    var source  = (utm_medium) ? sourceMapping[utm_medium] : "Website";
+    
     var data = {
         "name": name,
         "mobile": mobile,
         "email": email,
-        "source": "Website",
+        "source": source,
         "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
         "sub_source":utm_medium,
         "project": project
@@ -294,16 +310,24 @@ $("#leadFormMobile").submit(function (e) {
     var project = 'Hubtown Harmony';
     var utm_source = queryParameter('utm_source',currentUrl);
     var utm_medium = queryParameter('utm_medium',currentUrl);
-    var data = {
-        "name": name,
-        "mobile": mobile,
-        "email": email,
-        "source": "Website",
-        "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
-        "sub_source":utm_medium,
-        "project": project
-
+    var sourceMapping = { 'Google_Brand%20Search' : "Google Search",
+        'google_display': "Google Display",
+        "Google%20Discovery": "Google Discovery",
+        "":"Website"
     }
+
+var source  = (utm_medium) ? sourceMapping[utm_medium] : "Website";
+
+var data = {
+    "name": name,
+    "mobile": mobile,
+    "email": email,
+    "source": source,
+    "comment":"URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+    "sub_source":utm_medium,
+    "project": project
+
+}
     storeLeadInEnrichr(data,formName);
     return;
 
