@@ -112,11 +112,24 @@ $("#leadForm-popup").submit(function (e) {
         "project": project
 
     }
-    storeLeadInEnrichr(data,formName);
-    return;
-    storeLeadInSFDC(data);
-    return;
+    var sfdcData = {
+        "req":
+        {
+        "name": name,
+        "mobile": mobile,
+        "phone":  "",
+        "email": email, 
+        "alternateEmail":  "",
+        "campaignCode": "a025i00000VUOi2AAH",
+        "url":currentUrl.substring(0,255),
+        "remarks":  "URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "UTM_Medium":  utm_medium,
+        "UTM_Source":  utm_source,
+        "LeadIdentifier":  "post"
+        }
+    }
 
+    storeLeadInSFDC(sfdcData);
     $.ajax({
         url: "https://app.sell.do/api/leads/create",
         type: "post", //send it through get method
@@ -222,10 +235,24 @@ $("#leadForm").submit(function (e) {
         "project": project
 
     }
-    storeLeadInEnrichr(data,formName);
-    return;
-    storeLeadInSFDC(data);
-    return;
+    var sfdcData = {
+        "req":
+        {
+        "name": name,
+        "mobile": mobile,
+        "phone":  "",
+        "email": email, 
+        "alternateEmail":  "",
+        "campaignCode": "a025i00000VUOi2AAH",
+        "url":currentUrl.substring(0,255),
+        "remarks":  "URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "UTM_Medium":  utm_medium,
+        "UTM_Source":  utm_source,
+        "LeadIdentifier":  "post"
+        }
+    }
+
+    storeLeadInSFDC(sfdcData);
 
     $.ajax({
         url: "https://app.sell.do/api/leads/create",
@@ -327,11 +354,28 @@ var data = {
     "sub_source":utm_medium,
     "project": project
 
-}
-    storeLeadInEnrichr(data,formName);
-    return;
+    }
+    var sfdcData = {
+        "req":
+        {
+        "name": name,
+        "mobile": mobile,
+        "phone":  "",
+        "email": email, 
+        "alternateEmail":  "",
+        "campaignCode": "a025i00000VUOi2AAH",
+        "url":currentUrl.substring(0,255),
+        "remarks":  "URL:"+currentUrl.substring(0,255)+" UTM Source:"+utm_source+" UTM Medium:"+utm_medium,
+        "UTM_Medium":  utm_medium,
+        "UTM_Source":  utm_source,
+        "LeadIdentifier":  "post"
+        }
+    }
 
-    storeLeadInSFDC(data);
+    storeLeadInSFDC(sfdcData);
+
+    // storeLeadInEnrichr(data,formName);
+    return;
 
 
     $.ajax({
@@ -402,7 +446,7 @@ function storeLeadInSFDC(data) {
       $.ajax(settings).done(function (response) {
         console.log(response);
         storeLeadInDB(data["name"], data["email"], data["mobile"], JSON.stringify(response));
-        setTimeout(function redirect_response() { window.location.href = "response.html"; }, 1000)
+        setTimeout(function redirect_response() { window.location.href = "response.html"; }, 2000)
       }); 
 
 }
